@@ -1,4 +1,9 @@
 """module with utils function for answering SOF questions"""
+"""
+import pandas as pd
+df = pd.DataFrame(['Copy me to clipboard'])
+df.to_clipboard(index=False,header=False)
+"""
 
 
 def SOF_to_df(df_input):

@@ -1,0 +1,61 @@
+lista_final = [] #storethe difference beetween this two lists
+lista1 = (
+    {
+        'ip': '127.0.0.1',
+        'hostname': 'abc',
+        'state': 'open',
+        'scan_id': '2'
+    },
+    {
+        'ip': '127.0.0.2',
+        'hostname': 'bca',
+        'state': 'closed',
+        'scan_id': '2'
+    }
+)
+lista2 = (
+    {
+        'ip': '127.0.0.1',
+        'hostname': 'abc',
+        'state': 'closed',
+        'scan_id': '3'
+    },
+    {
+        'ip': '127.0.0.3',
+        'hostname': 'qwe',
+        'state': 'open',
+        'scan_id': '3'
+    },
+    {
+        'ip': '127.0.0.2',
+        'hostname': 'xxx',
+        'state': 'up',
+        'scan_id': '3'
+    },
+)
+
+lista1 = list(lista1)
+lista2 = list(lista2)
+
+import pdb; pdb.set_trace()
+lista1.sort( key = lambda d : d['ip'] )
+lista2.sort( key = lambda d : d['ip'] ) 
+for dd in zip(lista1,lista2):         
+        for k, v in dd[0].iteritems():
+                if( v != dd[1].get(k) and k != 'scan_id' ):
+                        dd[0][k] = "({}:{}) != ({}:{})".format( dd[0]['scan_id'], v, dd[1]['scan_id'], dd[1].get(k))
+        dd[0].pop('scan_id')
+        lista_final.append(dd[0])
+
+import pdb; pdb.set_trace()
+longer_lista = lista1 if lista1>lista2 else lista2
+for d in longer_lista[ len( zip( lista1, lista2 ) ) : ]:
+	for k,v in d.iteritems():
+		if( k != 'ip' and k!='scan_id' ):
+                        d[k] = "({}) != ({}:{})".format( "NOT EXISTS", lista2[0]['scan_id'], v )
+	lista_final.append( d )		
+
+
+
+import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
